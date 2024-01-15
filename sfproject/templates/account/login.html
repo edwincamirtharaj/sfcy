@@ -1,0 +1,27 @@
+<!-- templates/account/login.html -->
+
+{% extends "account/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title text-center mb-4">Sign In-</h5>
+          <form method="post" class="form-signin">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary btn-block mt-3">Sign In</button>
+          </form>
+          <p class="mt-3 text-center">
+            If you have not created an account yet, then please
+            <a href="{% url 'account_signup' %}">sign up first</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
