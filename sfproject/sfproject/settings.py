@@ -145,7 +145,7 @@ AUTHENTICATION_BACKENDS = [
     
 ]
 
-ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 
@@ -156,3 +156,37 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 # Message settings
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
+
+# Email Settings
+
+# Use the SMTP email backend
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# SMTP server settings
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Example: For Gmail
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_HOST_USER = 'webappbook@gmail.com'  # Your email address
+EMAIL_HOST_PASSWORD = 'scymusdbvuhhohdt'  # Your email password or app password
+
+# Default "from" address for emails
+DEFAULT_FROM_EMAIL = 'SF Consultancy <noreply@sfconsultancy.com>'
+
+# Reply-to address for emails sent by your application
+# Set to the same as DEFAULT_FROM_EMAIL or leave blank
+EMAIL_REPLY_TO = ''
+
+# Use SSL/TLS for the connection when sending emails
+EMAIL_USE_SSL = False
+
+# Email timeout (in seconds)
+EMAIL_TIMEOUT = None
+
+# Subject prefix for emails sent by your application
+EMAIL_SUBJECT_PREFIX = '[MyApp]'
+
+# Set to True to use the console backend during development
+EMAIL_BACKEND_CONSOLE = True
