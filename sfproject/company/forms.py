@@ -15,3 +15,6 @@ class CompanyForm(forms.ModelForm):
     class Meta:
         model = Company
         exclude = ['is_approved', 'confirmation_token']  
+        
+class CompanyMappingForm(forms.Form):
+    pan_number = forms.CharField(label='Company PAN Number', max_length=10)

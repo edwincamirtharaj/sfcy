@@ -9,13 +9,13 @@
 </head>
 <body>
 
-    <h2>Company Confirmation</h2>
+    <h2>{{subject}}</h2>
     <hr>
     <p>Dear Client,</p>
 
     <p>Your company, {{ company.name }}, has been created successfully!</p>
 
-    <p>To complete the user mapping process, please click the link below:</p>
+    <p>{{ username }} is requesting you to complete the user mapping process. If you wish to approve this user, you can click the link below; otherwise, ignore it:</p>
 
     <a href="{{ verification_link }}" target="_blank">Verify User Mapping</a>
 
