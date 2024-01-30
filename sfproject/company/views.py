@@ -42,15 +42,16 @@ class CompanyCreateView(View):
             user_company_mapping.save()
 
             # Send confirmation email to the company owner with user mapping verification link
-            verification_link = f"http://127.0.0.1:8000/verify_user_mapping/{user_company_mapping.id}/{verification_token}/"
+            verification_link = f"http://127.0.0.1:8000/company/verify_user_mapping/{user_company_mapping.id}/{verification_token}/"
             subject = 'Company Confirmation'
             print(verification_link)
             message = render_to_string('company/confirmation_email.html', {'company': company, 'verification_link': verification_link})
-            plain_message = strip_tags(message)
+            #plain_message = strip_tags(message)
             from_email = 'webappbook@gmail.com'  # Update with your email or use a custom sender
             to_email = company.email
+            
 
-            email = EmailMessage(subject, plain_message, from_email, [to_email])
+            email = EmailMessage(subject, message, from_email, [to_email])
             email.content_subtype = 'html'
             email.send()
 
