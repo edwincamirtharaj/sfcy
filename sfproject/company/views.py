@@ -7,8 +7,8 @@ from django.utils.decorators import method_decorator
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.utils.crypto import get_random_string
-from .models import Company, WhatsAppNumber, UserCompanyMapping
-from .forms import CompanyForm, CompanyMappingForm
+from .models import Company, WhatsAppNumber, UserCompanyMapping, FileUpload
+from .forms import CompanyForm, CompanyMappingForm, FileUploadForm
 from django.contrib import messages
 from django.urls import reverse
 
@@ -119,3 +119,65 @@ def user_mapping(request):
         form = CompanyMappingForm()
 
     return render(request, 'company/user_mapping.html', {'form': form})
+
+
+def company_dashboard(request, company_id):
+    # Get the company based on the provided company_id
+    company = get_object_or_404(Company, id=company_id)
+    
+    user_mapping = UserCompanyMapping.objects.filter(user=request.user, company=company).first()
+    if user_mapping is None:
+        # Redirect to another page or display an error message
+        return redirect('access_denied')
+
+    # Pass relevant data to the template
+    context = {
+        'company': company,
+    }
+
+    return render(request, 'company/company_dashboard.html', context)
+
+class CompanyFilesView(View):
+    template_name = 'company/company_files.html'
+    form_class = FileUploadForm
+
+    def get(self, request, company_id):
+        # Get the company data based on company_id
+        company = get_object_or_404(Company, id=company_id)
+        
+        # Retrieve files associated with the company
+        files = FileUpload.objects.filter(company=company)
+
+        # Initialize the form for file uploads
+        form = self.form_class()
+
+        context = {'company': company, 'files':files, 'form':form}
+        return render(request, self.template_name, context)
+    
+    def post(self, request, company_id):
+        # Get the company data based on company_id
+        company = get_object_or_404(Company, id=company_id)
+
+        # Retrieve files associated with the company
+        files = FileUpload.objects.filter(company=company)
+
+        # Handle file upload
+        form = self.form_class(request.POST, request.FILES)
+
+        if form.is_valid():
+            instance = form.save(commit=False)
+            instance.user = request.user
+            instance.company = company  # Set the company for the uploaded file
+            instance.save()
+
+            messages.success(request, 'File uploaded successfully.')
+            return redirect('company_files', company_id=company.id)
+
+        # If the form is not valid, re-render the page with the form and files
+        context = {'company': company, 'files': files, 'form': form}
+        return render(request, self.template_name, context)
+    
+
+def access_denied(request):
+    return render(request, 'access_denied.html')
+

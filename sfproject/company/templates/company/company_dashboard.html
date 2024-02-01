@@ -1,0 +1,46 @@
+{% extends 'account/base.html' %}
+
+{% block content %}
+  <!-- Company Dashboard Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-info">
+    <div class="container-fluid">
+      <!-- Company Name on the Left -->
+      <a class="navbar-brand" href="#">{{company.name}}</a>
+      
+      <!-- Right-side menus -->
+      <div class="collapse navbar-collapse justify-content-end">
+        <ul class="navbar-nav">
+          <!-- Upload Menu -->
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'company_files' company.id %}" target="_blank">Files</a>
+          </li>
+          <!-- Logout Menu -->
+          <li class="nav-item">
+            <a class="nav-link" href="#">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content for Company Dashboard -->
+  <div class="container mt-3">
+    <div class="row">
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+              <div class="col-md-9">
+                <div class="card shadow">
+                  <div class="card-body">
+                    <h5 class="card-title bg-secondary p-3 text-white text-center mb-4">Your dashboard will be shown soon ! </h5>
+                             
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      <main class="col-md-12">
+        {% block main_content %}{% endblock %}
+      </main>
+    </div>
+  </div>
+{% endblock %}

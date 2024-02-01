@@ -19,6 +19,8 @@ from django.urls import path, include
 from django.views.generic import RedirectView
 from .views import profile
 from allauth.account.views import LogoutView
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,3 +31,6 @@ urlpatterns = [
     path('company/', include('company.urls')),
     path('accounts/logout/', LogoutView.as_view(), name='account_logout'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
