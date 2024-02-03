@@ -4,24 +4,26 @@
 <!-- Company Dashboard Navbar -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-info">
   <div class="container-fluid">
-    <!-- Company Name on the Left -->
     <a class="navbar-brand" href="#">{{company.name}}</a>
-    
-    <!-- Right-side menus -->
-    <div class="collapse navbar-collapse justify-content-end">
-      <ul class="navbar-nav">
-        <!-- Upload Menu -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto ">
         <li class="nav-item">
           <a class="nav-link" href="{% url 'company_dashboard' company.id %}">Dashboard</a>
         </li>
-        <!-- Logout Menu -->
+        
         <li class="nav-item">
-          <a class="nav-link" href="#">Logout</a>
+          <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
         </li>
       </ul>
     </div>
   </div>
 </nav>
+
+
 
 <div class="container mt-5">
   <div class="row justify-content-center">
