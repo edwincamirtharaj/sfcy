@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-@xw*nf_2#61l#8z6p(@6t2hw@yhqrxgv%f*9x!z!@@rd=l9cd+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '9e84-2401-4900-1ce3-f917-2401-6b7c-bca4-d437.ngrok-free.app']
+
 
 
 # Application definition
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'crispy_forms',
     'company',
+    'twilio_integration',
     
 ]
 
@@ -64,6 +66,7 @@ TEMPLATES = [
         'DIRS': [os.path.join(BASE_DIR, 'templates'),
                   # Add the company app template directory
                 os.path.join(BASE_DIR, 'company', 'templates'),
+                os.path.join(BASE_DIR, 'twilio_integration', 'templates'),
             ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -198,4 +201,9 @@ EMAIL_BACKEND_CONSOLE = True
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+# Twilio Settings
+TWILIO_ACCOUNT_SID = 'ACc0cb016b1cdbf70a5d5d013caf421cd5'
+TWILIO_AUTH_TOKEN = '2ec96105b79b0c9d7ef00e23711a498c'
+TWILIO_PHONE_NUMBER = '+14155238886'
 

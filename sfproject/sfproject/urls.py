@@ -30,6 +30,7 @@ urlpatterns = [
     path('accounts/profile/', profile, name='account_profile'),
     path('company/', include('company.urls')),
     path('accounts/logout/', LogoutView.as_view(), name='account_logout'),
+    path('twilio/', include('twilio_integration.urls')),
 ]
 
 if settings.DEBUG:
