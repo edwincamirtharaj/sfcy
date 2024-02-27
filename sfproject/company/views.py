@@ -13,6 +13,7 @@ from django.contrib import messages
 from django.urls import reverse
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+
 @method_decorator(login_required, name='dispatch')
 class CompanyCreateView(View):
     def get(self, request):

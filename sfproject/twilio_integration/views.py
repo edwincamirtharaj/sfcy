@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.conf import settings
 from twilio.rest import Client
 from company.models import WhatsAppNumber, Company
+
 from django.http import HttpRequest, HttpResponse
 from twilio.twiml.messaging_response import MessagingResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -52,6 +53,9 @@ def handle_whatsapp_message(request: HttpRequest):
         response = MessagingResponse()
         response.message("Your WhatsApp number is not registered.")
         return HttpResponse(str(response))
+    
+
+    
 
 def send_whatsapp_message(to, body):
     client = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)

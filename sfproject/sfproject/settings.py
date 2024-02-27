@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'company',
     'twilio_integration',
+    'email_sf',
     
 ]
 
@@ -67,6 +68,7 @@ TEMPLATES = [
                   # Add the company app template directory
                 os.path.join(BASE_DIR, 'company', 'templates'),
                 os.path.join(BASE_DIR, 'twilio_integration', 'templates'),
+                os.path.join(BASE_DIR, 'email_sf', 'templates'),
             ],
         'APP_DIRS': True,
         'OPTIONS': {
