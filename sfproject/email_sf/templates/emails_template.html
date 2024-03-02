@@ -1,21 +1,33 @@
-<!-- emails_template.html -->
+{% extends 'account/base.html' %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emails</title>
-</head>
-<body>
-    <h1>Emails</h1>
-    <ul>
+{% block content %}
+<div class="container mt-5">
+    <h2>Email List</h2>
+    <div class="row">
         {% for email_data in emails_data %}
-        <li>
-            <strong>Subject:</strong> {{ email_data.subject }} <br>
-            <strong>From:</strong> {{ email_data.sender }} <br>
-        </li>
+        <div class="col-md-12">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <strong>Sender:</strong> {{ email_data.sender }}
+                        </div>
+                        <div class="col-md-6 text-md-end">
+                            <strong>Date/Time:</strong> {{ email_data.date_time }}
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title subject" data-bs-toggle="collapse" data-bs-target="#emailContent{{ forloop.counter }}">{{ email_data.subject }}</h5>
+                    <div id="emailContent{{ forloop.counter }}" class="collapse" style="transition: height 0.6s ease-in-out;">
+                        <div class="card-text">{{ email_data.body }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
         {% endfor %}
-    </ul>
-</body>
-</html>
+    </div>
+</div>
+
+{% endblock %}
+
