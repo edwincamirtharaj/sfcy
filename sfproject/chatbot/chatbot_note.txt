@@ -1,0 +1,5 @@
+app created 'chatbot'
+added to installed app in settings.py
+pip install spacy
+python -m spacy download en_core_web_sm #this package for download English Language
+utils.py # used to load application with english language while start app

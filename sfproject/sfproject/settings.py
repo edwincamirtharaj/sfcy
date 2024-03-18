@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'company',
     'twilio_integration',
     'email_sf',
+    'chatbot',
     
 ]
 
